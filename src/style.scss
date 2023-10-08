@@ -1,0 +1,21 @@
+$primary-color: #FECEE9;
+$secondary-color: #A62A6C;
+$error-color: #ff2414;
+
+.btn-theme {
+  background-color: $primary-color;
+  color: $secondary-color;
+}
+.btn-theme:hover {
+  background-color: $secondary-color;
+  color: $primary-color;
+}
+
+.error-text {
+  color: $error-color;
+  font-weight: bold;
+}
+
+.error-field {
+  border-color: $error-color;
+}
