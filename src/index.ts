@@ -5,6 +5,9 @@ import about from "./views/about";
 import user from "./views/user";
 import "./style.scss";
 import FormValidator from "./services/form-validator";
+import LoginformHandler from "./services/loginform-handler";
+import userLogin from "./views/user-login";
+import userSignup from "./views/user-signup";
 
 const navigateTo = url => {
   history.pushState(null, "", url);
@@ -17,7 +20,9 @@ const router = async () => {
     { path: "/gamelist", view: gamelist},
     { path: "/pileofshame", view: pileOfShame},
     { path: "/about", view: about},
-    { path: "/user", view: user}
+    { path: "/user", view: user},
+    { path: "/user/login", view: userLogin},
+    { path: "/user/signup", view: userSignup}
   ];
 
   // Test each route for potential match
@@ -42,8 +47,10 @@ const router = async () => {
 
 
   document.querySelector("#app").innerHTML = await view.getHtml();
-  if (match.route.path === "/user"){
-    addFormValidator()
+  if (match.route.path === "/user/login" || match.route.path === "/user/signup"){
+    addFormValidator();
+    addFormButtonFunctions();
+
   }
 
 };
@@ -76,5 +83,10 @@ function addFormValidator(){
   const validator = new FormValidator()
   validator.initialize()
   console.log("Form Validator added")
+}
 
+function addFormButtonFunctions(){
+  const loginformHandler = new LoginformHandler();
+  loginformHandler.initialize();
+  console.log("Button Functions added")
 }

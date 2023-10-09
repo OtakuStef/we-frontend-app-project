@@ -5,10 +5,12 @@ $error-color: #ff2414;
 .btn-theme {
   background-color: $primary-color;
   color: $secondary-color;
+  box-shadow: 0 8px 15px rgba($primary-color, 0.5);
 }
 .btn-theme:hover {
   background-color: $secondary-color;
   color: $primary-color;
+  box-shadow: 0 15px 20px rgba($secondary-color, 0.4);
 }
 
 .error-text {
@@ -18,4 +20,12 @@ $error-color: #ff2414;
 
 .error-field {
   border-color: $error-color;
+}
+
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
 }
