@@ -1,3 +1,5 @@
+import routing from "./routing";
+
 export default class LoginformHandler{
   private readonly signInButton;
   private readonly signUpButton;
@@ -15,34 +17,34 @@ export default class LoginformHandler{
 
   public addButtonEvents(){
 
-    this.signInButton?.addEventListener('click', function (){
+    this.signInButton?.addEventListener('click', () => {
       submitLogin();
     })
-    this.signUpButton?.addEventListener('click', function (){
-      submitSignUp();
+    this.signUpButton?.addEventListener('click',  e => {
+      submitSignUp(e);
     })
-    this.registerButton?.addEventListener('click', function (){
-      generateUser();
+    this.registerButton?.addEventListener('click',  e => {
+      generateUser(e);
     })
   }
 
 }
 
 function submitLogin() {
-  console.log("validation check: " + isFormValid())
   if (isFormValid()){
-    console.log("signin")
+    console.log("logged in")
   }
 }
 
-function submitSignUp() {
-  console.log("signup")
-  window.location.href = "/user/signup";
+function submitSignUp(e : MouseEvent) {
+  e.preventDefault();
+  routing.navigateTo("/user/signup");
 }
 
-function generateUser() {
+function generateUser(e : MouseEvent) {
   if (isFormValid()){
-    console.log("register")
+    e.preventDefault();
+    routing.navigateTo("/user/login");
   }
 }
 
