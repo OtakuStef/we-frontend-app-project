@@ -9,7 +9,7 @@ export default class extends abstractView {
   async getHtml() {
     return `
       <p> Home works </p>
-    `;
+      `;
 
   }
 

@@ -50,7 +50,6 @@ export default class routing{
     if (match.route.path === "/user/login" || match.route.path === "/user/signup"){
       addFormValidator();
       addFormButtonFunctions();
-
     }
 
   };
@@ -67,8 +66,4 @@ function addFormButtonFunctions(){
   const loginformHandler = new LoginformHandler();
   loginformHandler.initialize();
   console.log("Button Functions added")
-}
-
-function addFormToaster(){
-  //TODO: Add Toast for success messages
 }

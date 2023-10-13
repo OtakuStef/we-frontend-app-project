@@ -1,4 +1,5 @@
 import routing from "./routing";
+import Toaster from "./toaster";
 
 export default class LoginformHandler{
   private readonly signInButton;
@@ -33,6 +34,8 @@ export default class LoginformHandler{
 function submitLogin() {
   if (isFormValid()){
     console.log("logged in")
+    Toaster.toasterEvent("Logged in", 4000)
+    routing.navigateTo("/pileofshame");
   }
 }
 
@@ -44,6 +47,7 @@ function submitSignUp(e : MouseEvent) {
 function generateUser(e : MouseEvent) {
   if (isFormValid()){
     e.preventDefault();
+    Toaster.toasterEvent("User created", 4000)
     routing.navigateTo("/user/login");
   }
 }
