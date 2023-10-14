@@ -1,5 +1,6 @@
 $primary-color: #FECEE9;
 $secondary-color: #A62A6C;
+$tertiary-color: #d02986;
 $error-color: #ff2414;
 
 .btn-theme {
@@ -54,3 +55,15 @@ $error-color: #ff2414;
   font-size: larger;
   color: $primary-color;
 }
+
+h1{
+  font-family: 'Roboto', sans-serif;
+  color: $secondary-color;
+}
+
+h2{
+  font-family: 'Roboto', sans-serif;
+  color: $tertiary-color;
+}
+
+//Game Cards

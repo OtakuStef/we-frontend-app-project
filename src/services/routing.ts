@@ -7,8 +7,9 @@ import userLogin from "../views/user-login";
 import userSignup from "../views/user-signup";
 import FormValidator from "./form-validator";
 import LoginformHandler from "./loginform-handler";
+import GamesFetcher from "./games-fetcher";
 
-export default class routing{
+export default class Routing{
   static navigateTo = url => {
     history.pushState(null, "", url);
     this.router();
@@ -50,6 +51,8 @@ export default class routing{
     if (match.route.path === "/user/login" || match.route.path === "/user/signup"){
       addFormValidator();
       addFormButtonFunctions();
+    }else if (match.route.path === "/gamelist"){
+      initializeGameList();
     }
 
   };
@@ -66,4 +69,9 @@ function addFormButtonFunctions(){
   const loginformHandler = new LoginformHandler();
   loginformHandler.initialize();
   console.log("Button Functions added")
+}
+
+function initializeGameList(){
+  const gameFetcher = new GamesFetcher();
+  gameFetcher.initialize();
 }

@@ -17,6 +17,9 @@
         <img src="/logo-icon-no-background.svg" alt="Logo: pink gaming controller" height="32" class="d-inline-block align-text-top">
         My Game Collection
       </p>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
@@ -35,10 +38,6 @@
             <a class="nav-link" href="/user/login" data-link>My User</a>
           </li>
         </ul>
-        <!--        <form class="d-flex">-->
-        <!--          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
-        <!--          <button class="btn btn-outline-success" type="submit">Search</button>-->
-        <!--        </form>-->
       </div>
     </div>
   </nav>
@@ -46,12 +45,13 @@
     <div id="app"></div>
   </main>
 
-  <footer class="footer mt-auto py-3 border-top fixed-bottom bg-light">
-    <div class="col-md-4 d-flex align-items-center px-3">
-      <span class="mb-3 mb-md-0 text-muted">FH Campus Wien - Frontend Design, © Stefan Pfleger 2023 </span>
+  <footer class="footer mt-auto border-top fixed-bottom bg-light row">
+    <div class="col-md-6 d-flex flex-row align-items-center py-3 px-4">
+      <span class="mb-3 mb-md-0 text-muted">FH Campus Wien - Frontend Design</span>
+      <span class="px-2 mb-3 mb-md-0 text-muted">© Stefan Pfleger 2023 </span>
     </div>
-
-    <div class="nav col-md-4 justify-content-end list-unstyled d-flex">
+    <div class="col-md-6 d-flex flex-row justify-content-end align-items-center py-3 px-4">
+      <a href="https://rawg.io/" target="_blank" class="mb-3 mb-md-0 text-muted">API provided by RAWG</a>
     </div>
   </footer>
 </div>

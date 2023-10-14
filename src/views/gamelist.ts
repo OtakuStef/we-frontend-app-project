@@ -8,9 +8,11 @@ export default class extends abstractView {
 
   async getHtml() {
     return `
-      <p> Game List works </p>
+      <div id="gameListDiv"></div>
     `;
 
   }
+
+
 
 }
