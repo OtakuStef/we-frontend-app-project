@@ -1,69 +1,116 @@
-import {GameAPIResponse, GameItem} from "../Models/GameItem";
+import {GameAPIResponse} from "../Models/GameItem";
+import {HtmlElementCreator} from "./html-element-creator";
+import {GameCardCreator} from "./game-card-creator";
 
 export default class GamesFetcher {
-  readonly GET_GAMES_URL : string;
-  readonly API_KEY : string;
-  private previousPageURL : string;
-  private nextPageURL : string;
+  readonly GET_GAMES_URL: string;
+  readonly API_KEY: string;
+  private previousPageURL: string;
+  private nextPageURL: string;
+  private pageCount: number = 1;
 
   constructor() {
     this.GET_GAMES_URL = "https://api.rawg.io/api/games";
     this.API_KEY = "?key=" + import.meta.env.VITE_RAWG_API_KEY;
   }
 
-
   async initialize() {
-    const gameDiv = createDivElement("container");
-    const gameData: GameAPIResponse = await this.getGameList();
-    console.log(gameData);
-    this.previousPageURL = gameData.previousPage;
-    this.nextPageURL = gameData.nextPage;
-    const games : GameItem[] = gameData.results;
-
-    for (let gameIndex in games){
-      let game = games[gameIndex];
-      gameDiv.appendChild(this.createGameCard(game))
-    }
-
-    document.querySelector("#gameListDiv").appendChild(gameDiv);
+    this.initializePageNav();
+    await this.initializeGameList();
   }
 
-  getGameList = async () => {
-    try {
-      const dates : string = "2023-01-01,2023-12-31";
-      const ordering : string = "-metacritic";
-      const page_size : number = 10;
+  initializePageNav() {
+    const navDiv = HtmlElementCreator.createDivElement(["nav-container", "row"]);
+    const buttonDiv = HtmlElementCreator.createDivElement(["col", "px-0"]);
+    const pageNumber = HtmlElementCreator.createTextButtonElement("btn-theme", this.pageCount.toString(), "pageCounter")
+    const prevButton = HtmlElementCreator.createButtonElement(["btn-theme", "previous"], "arrow_back", "previousButton");
+    const nextButton = HtmlElementCreator.createButtonElement(["btn-theme", "forward"], "arrow_forward", "nextButton");
 
-      const parameterGameList : string = this.API_KEY
+    navDiv.appendChild(buttonDiv);
+    buttonDiv.appendChild(prevButton);
+    buttonDiv.appendChild(pageNumber);
+    buttonDiv.appendChild(nextButton);
+
+    document.querySelector("#paginationNav").appendChild(navDiv);
+
+    this.initializePageNavEvents();
+  }
+
+  initializePageNavEvents() {
+    let prevButton = document.querySelector(".previous");
+    let nextButton = document.querySelector(".forward");
+
+    prevButton?.addEventListener("click", () => {
+      this.changeGameList("prev");
+    })
+
+    nextButton?.addEventListener("click", () => {
+      this.changeGameList("next");
+    })
+
+  }
+
+  async initializeGameList() {
+    const gameData: GameAPIResponse = await this.getInitGameList();
+    this.updatePageURLs(gameData);
+    GameCardCreator.createGameList(gameData);
+  }
+
+  async changeGameList(buttonEvent: string) {
+    let pageCounter: HTMLAnchorElement = document.querySelector(".pageCounter");
+    let pageUrl: string;
+    let newPageCount: number;
+
+    if (buttonEvent === "prev" && this.previousPageURL != null) {
+      pageUrl = this.previousPageURL;
+      newPageCount = this.pageCount - 1;
+    } else if (buttonEvent === "next" && this.nextPageURL != null) {
+      pageUrl = this.nextPageURL;
+      newPageCount = this.pageCount + 1;
+    } else {
+      return;
+    }
+
+    const gameData: GameAPIResponse = await this.getGameList(pageUrl);
+    this.updatePageURLs(gameData);
+    GameCardCreator.createGameList(gameData);
+
+    this.pageCount = newPageCount;
+    pageCounter.text = newPageCount.toString();
+  }
+
+  updatePageURLs(gameData : GameAPIResponse){
+    this.previousPageURL = gameData.previous;
+    this.nextPageURL = gameData.next;
+  }
+
+
+  getInitGameList = async () => {
+    try {
+      const dates: string = "2023-01-01,2023-12-31";
+      const ordering: string = "-metacritic";
+      const page_size: number = 12;
+
+      const parameterGameList: string = this.API_KEY
         + "&dates=" + dates
         + "&ordering=" + ordering
         + "&page_size=" + page_size;
 
       const response = await fetch(this.GET_GAMES_URL + parameterGameList);
       return await handleResponseError(response);
-    }catch (error){
+    } catch (error) {
       console.log("Error while fetching and handling RAWG-API: " + error);
     }
   }
 
-  createGameCard = (gameItem : GameItem) => {
-    const gameCard = createDivElement("card");
-    const gameImage = createImageElement("card-img-top",gameItem.background_image,"Picture of the game " + gameItem.name);
-    const cardBody = createDivElement("card-body");
-    const gameTitle = createTextElement("h5", "cardTitle", gameItem.name);
-    const metaScore = createTextElement("p", "card-text", gameItem.metacritic.toString());
-    const favLink = createButtonElement("btn-theme", "#");
-
-    gameCard.appendChild(gameImage);
-    gameCard.appendChild(cardBody);
-    cardBody.appendChild(gameTitle);
-    cardBody.appendChild(metaScore);
-    cardBody.appendChild(favLink);
-
-    return gameCard;
+  getGameList = async (pageURL: string) => {
+    try {
+      const response = await fetch(pageURL);
+      return await handleResponseError(response);
+    } catch (error) {
+      console.log("Error while fetching and handling RAWG-API: " + error);
+    }
   }
-
-
 }
 
 function handleResponseError(response){
@@ -73,32 +120,4 @@ function handleResponseError(response){
   return response.json();
 }
 
-function createDivElement(divClass : string){
-  const divElement = document.createElement("div");
-  divElement.classList.add(divClass);
-  return divElement;
-}
-
-function createImageElement(imgClass : string, source : string, altText : string){
-  const imageElement = document.createElement("img");
-  imageElement.classList.add(imgClass);
-  imageElement.src = source;
-  imageElement.alt = altText;
-  return imageElement;
-}
-
-function createTextElement(textType : string, textClass : string, text : string){
-  const textElement = document.createElement(textType);
-  textElement.classList.add(textClass);
-  textElement.textContent = text;
-  return textElement;
-}
-
-function createButtonElement(buttonTheme : string, link : string){
-  const buttonElement = document.createElement("a");
-  buttonElement.classList.add("btn");
-  buttonElement.classList.add(buttonTheme);
-  buttonElement.href = link;
-  return buttonElement;
-}
 
