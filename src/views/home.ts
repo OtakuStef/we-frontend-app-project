@@ -8,7 +8,7 @@ export default class extends abstractView {
 
   async getHtml() {
     return `
-      <div class="container align-items-center justify-content-center text-center p-2">
+      <div class="container align-items-center justify-content-center text-center p-2 mt-2">
         <h1>WELCOME!</h1>
       </div>
       <div class="container align-items-center">

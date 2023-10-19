@@ -56,5 +56,11 @@ export class HtmlElementCreator{
 
     return buttonElement;
   }
+
+  static createDividerElement(){
+    const dividerElement = document.createElement("hr");
+    dividerElement.classList.add("hr");
+    return dividerElement;
+  }
 }
 

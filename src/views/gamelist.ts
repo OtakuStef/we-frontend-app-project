@@ -8,7 +8,7 @@ export default class extends abstractView {
 
   async getHtml() {
     return `
-      <div id="paginationNav" class="container align-items-center justify-content-center text-center p-2">
+      <div id="paginationNav" class="container align-items-center justify-content-center text-center p-2 mt-2">
         <h1>Games ranked by Metacritic Score</h1> 
       </div>
       <div id="gameListDiv" class="container align-items-center"></div>

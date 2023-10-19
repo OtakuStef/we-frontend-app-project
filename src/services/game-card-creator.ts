@@ -21,6 +21,7 @@ export class GameCardCreator{
     const gameImage = HtmlElementCreator.createImageElement("card-img-top",gameItem.background_image,"Picture of the game " + gameItem.name);
     const cardBody = HtmlElementCreator.createDivElement(["card-body"]);
     const gameTitle = HtmlElementCreator.createTextElement("h5", "cardTitle", gameItem.name);
+    const divider = HtmlElementCreator.createDividerElement();
     const metaScore = HtmlElementCreator.createTextElement("p", "card-text", "Metacritic Score: " + this.verifyString(gameItem.metacritic));
     const genres = HtmlElementCreator.createTextElement("p", "card-text", "Genres: " + this.extractGenres(gameItem.genres));
     const platforms = HtmlElementCreator.createTextElement("p", "card-text", "Platforms: " + this.extractPlatforms(gameItem.platforms));
@@ -49,6 +50,7 @@ export class GameCardCreator{
     gameCard.appendChild(gameImage);
     gameCard.appendChild(cardBody);
     cardBody.appendChild(gameTitle);
+    cardBody.appendChild(divider);
     cardBody.appendChild(metaScore);
     cardBody.appendChild(genres);
     cardBody.appendChild(platforms);
