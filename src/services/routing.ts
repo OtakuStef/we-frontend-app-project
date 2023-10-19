@@ -8,6 +8,8 @@ import userSignup from "../views/user-signup";
 import FormValidator from "./form-validator";
 import LoginformHandler from "./loginform-handler";
 import GamesFetcher from "./games-fetcher";
+import {PileOfShameHandler} from "./pile-of-shame-handler";
+import HomeDashboardRouter from "./home-dashboard-router";
 
 export default class Routing{
   static navigateTo = url => {
@@ -53,6 +55,10 @@ export default class Routing{
       addFormButtonFunctions();
     }else if (match.route.path === "/gamelist"){
       initializeGameList();
+    }else if (match.route.path === "/pileofshame"){
+      initializePileOfShame();
+    }else if (match.route.path === "/"){
+      initializeHome();
     }
 
   };
@@ -75,3 +81,14 @@ function initializeGameList(){
   const gameFetcher = new GamesFetcher();
   gameFetcher.initialize();
 }
+
+function initializePileOfShame(){
+  const pileOfShameHandler = new PileOfShameHandler();
+  pileOfShameHandler.initialize();
+}
+
+function initializeHome(){
+  const homeDashboardRouter = new HomeDashboardRouter();
+  homeDashboardRouter.initialize();
+}
+

@@ -22,25 +22,26 @@ export class HtmlElementCreator{
     return textElement;
   }
 
-  static createButtonElement(buttonClasses : string[], icon : string, buttonType : string){
+  static createButtonElement(buttonClasses : string[], icon : string, buttonIconClass : string){
     const buttonElement = document.createElement("a");
-    const buttonIcon = document.createElement("i");
+    const buttonIcon = this.createButtonIconElement(icon, buttonIconClass);
     for(let buttonClassIndex in buttonClasses){
       buttonElement.classList.add(buttonClasses[buttonClassIndex]);
     }
     buttonElement.classList.add("btn");
     buttonElement.classList.add("m-2");
-    buttonIcon.classList.add("material-symbols-outlined");
-    buttonIcon.innerText = icon;
-    buttonIcon.classList.add(buttonType);
 
     buttonElement.appendChild(buttonIcon);
 
     return buttonElement;
   }
 
-  static createButtonIconElement(buttonIconName: string){
+  static createButtonIconElement(buttonIconName: string, buttonClass : string){
     const buttonIcon = document.createElement("i");
+    buttonIcon.classList.add("material-symbols-outlined");
+    buttonIcon.classList.add(buttonClass);
+    buttonIcon.innerText = buttonIconName;
+    return buttonIcon;
   }
 
   static createTextButtonElement(buttonTheme : string, text : string, buttonType : string){

@@ -1,5 +1,6 @@
 import {GameAPIResponse, GameItem, Genre, Platforms} from "../Models/GameItem";
 import {HtmlElementCreator} from "./html-element-creator";
+import {PileOfShameHandler} from "./pile-of-shame-handler";
 
 export class GameCardCreator{
   static createGameList(gameData: GameAPIResponse) {
@@ -25,17 +26,23 @@ export class GameCardCreator{
     const platforms = HtmlElementCreator.createTextElement("p", "card-text", "Platforms: " + this.extractPlatforms(gameItem.platforms));
     const favButton = HtmlElementCreator.createButtonElement(["btn-theme"], "favorite", "pileOfShame");
 
+    if (PileOfShameHandler.itemExists(gameItem)){
+      favButton.classList.add("favourite");
+      favButton.replaceChildren(HtmlElementCreator.createButtonIconElement("heart_minus", "favIcon"));
+    }
 
     favButton.addEventListener("click", e => {
-      e.preventDefault()
+      e.preventDefault();
       if(favButton.classList.contains("favourite")){
         favButton.classList.remove("favourite");
-        favButton.replaceChildren()
-        this.removeFromPileOfShame(gameItem)
+        favButton.replaceChildren(HtmlElementCreator.createButtonIconElement("favorite", "favIcon"));
+        this.removeFromPileOfShame(gameItem);
       }else {
         favButton.classList.add("favourite");
+        favButton.replaceChildren(HtmlElementCreator.createButtonIconElement("heart_minus", "favIcon"));
         this.addToPileOfShame(gameItem);
       }
+
     })
 
     headerDiv.appendChild(gameCard);
@@ -51,11 +58,11 @@ export class GameCardCreator{
   }
 
   private static addToPileOfShame(gameItem: GameItem) {
-    console.log("Item added: " + gameItem.name)
+    PileOfShameHandler.storeNewItem(gameItem);
   }
 
   private static removeFromPileOfShame(gameItem: GameItem){
-    console.log("Item removed: " + gameItem.name)
+    PileOfShameHandler.removeItem(gameItem);
   }
 
   private static verifyString(input) : string{
