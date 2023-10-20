@@ -26,8 +26,8 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          git config --global user.name "${{ secrets.GITHUB_ACTOR }}"
-          git config --global user.email "${{ secrets.GITHUB_ACTOR }}@users.noreply.github.com"
+          git config --global user.name "${{ secrets.USERNAME }}"
+          git config --global user.email "${{ secrets.USERNAME }}@users.noreply.github.com"
           echo 'node_modules' >> .gitignore
           git init
           git add .
