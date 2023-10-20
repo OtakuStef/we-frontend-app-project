@@ -15,7 +15,7 @@ export default class extends abstractView {
         <div class="card-container row">
           <div id="gameListCard" class="btn col-md-4 px-0">
             <div class="card m-2">
-              <img src="../../gameListImage.jpg" alt="chessboard showing a pawn with a crown">
+              <img src="../../game-list-image.jpg" alt="chessboard showing a pawn with a crown">
               <div class="card-body">
                 <h5 class="card-title home-title">Game List</h5>
                 <hr class="hr" />
@@ -25,7 +25,7 @@ export default class extends abstractView {
           </div>
           <div id="pileOfShameCard" class="btn col-md-4 px-0">
             <div class="card m-2">
-              <img src="../../pileOfShameImage.jpg" alt="pink and blue xbox controller">
+              <img src="../../pile-of-shame-image.jpg" alt="pink and blue xbox controller">
               <div class="card-body">
                 <h5 class="card-title home-title">Pile Of Shame</h5>
                 <hr class="hr" />
@@ -35,7 +35,7 @@ export default class extends abstractView {
           </div>
           <div id="userCard" class="btn col-md-4 px-0">
             <div class="card m-2">
-              <img src="../../userAccountImage.jpg" alt="colleagues working on a project with pen and paper">
+              <img src="../../user-account-image.jpg" alt="colleagues working on a project with pen and paper">
               <div class="card-body">
                 <h5 class="card-title home-title">My User</h5>
                 <hr class="hr" />
