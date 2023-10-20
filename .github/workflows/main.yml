@@ -3,7 +3,13 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - deployment  # Change this to your main branch name
+      - deployment 
+  workflow_dispatch: 
+    inputs:
+      branch:
+        description: 'Target branch for deployment'
+        required: true
+        default: 'gh-page' 
 
 jobs:
   deploy:
