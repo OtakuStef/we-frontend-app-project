@@ -4,5 +4,5 @@ export default defineConfig({
   build: {
     minify: true
   },
-  base: "/"
+  base: "/we-frontend-app-project"
 })
