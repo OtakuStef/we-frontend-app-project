@@ -45,6 +45,6 @@ export class PileOfShameHandler {
       pileOfShameDiv.appendChild(GameCardCreator.createGameCard(game))
     }
 
-    document.querySelector("#pileOfShameDiv").replaceChildren(pileOfShameDiv);
+    document.querySelector("#pileOfShameDiv")!.replaceChildren(pileOfShameDiv);
   }
 }
