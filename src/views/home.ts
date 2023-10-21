@@ -20,7 +20,7 @@ export default class extends abstractView {
             <div class="card m-2">
               <img src=${gameListImageUrl} alt="chessboard showing a pawn with a crown">
               <div class="card-body">
-                <h5 class="card-title home-title">Game List</h5>
+                <h1 class="card-title home-title">Game List</h1>
                 <hr class="hr" />
                 <p class="card-text home-text">Show all the cool games ranked by their Metacritics Score! </p>
               </div>
@@ -30,7 +30,7 @@ export default class extends abstractView {
             <div class="card m-2">
               <img src=${pileOfShameImageUrl} alt="pink and blue xbox controller">
               <div class="card-body">
-                <h5 class="card-title home-title">Pile Of Shame</h5>
+                <h1 class="card-title home-title">Pile Of Shame</h1>
                 <hr class="hr" />
                 <p class="card-text home-text">WHAT? You haven't played THAT many games? GO GO GO - start playing! </p>
               </div>
@@ -40,7 +40,7 @@ export default class extends abstractView {
             <div class="card m-2">
               <img src=${userAccountImageUrl} alt="colleagues working on a project with pen and paper">
               <div class="card-body">
-                <h5 class="card-title home-title">My User</h5>
+                <h1 class="card-title home-title">My User</h1>
                 <hr class="hr" />
                 <p class="card-text home-text">Create an account or login to your existing account to share the pain with your friends!</p>
               </div>
