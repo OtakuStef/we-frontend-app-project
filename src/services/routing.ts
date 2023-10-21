@@ -2,7 +2,6 @@ import home from "../views/home";
 import gamelist from "../views/gamelist";
 import pileOfShame from "../views/pile-of-shame";
 import about from "../views/about";
-import user from "../views/user";
 import userLogin from "../views/user-login";
 import userSignup from "../views/user-signup";
 import FormValidator from "./form-validator";
@@ -10,6 +9,7 @@ import LoginformHandler from "./loginform-handler";
 import GamesFetcher from "./games-fetcher";
 import {PileOfShameHandler} from "./pile-of-shame-handler";
 import HomeDashboardRouter from "./home-dashboard-router";
+import AppURLs from "../Models/AppURLs";
 
 export default class Routing{
   static navigateTo = url => {
@@ -19,13 +19,12 @@ export default class Routing{
 
   static router = async () => {
     const routes = [
-      { path: "/", view: home},
-      { path: "/gamelist", view: gamelist},
-      { path: "/pileofshame", view: pileOfShame},
-      { path: "/about", view: about},
-      { path: "/user", view: user},
-      { path: "/user/login", view: userLogin},
-      { path: "/user/signup", view: userSignup}
+      { path: AppURLs.home, view: home},
+      { path: AppURLs.gameList, view: gamelist},
+      { path: AppURLs.pileofshame, view: pileOfShame},
+      { path: AppURLs.about, view: about},
+      { path: AppURLs.login, view: userLogin},
+      { path: AppURLs.signup, view: userSignup}
     ];
 
     // Test each route for potential match
@@ -50,14 +49,14 @@ export default class Routing{
 
 
     document.querySelector("#app").innerHTML = await view.getHtml();
-    if (match.route.path === "/user/login" || match.route.path === "/user/signup"){
+    if (match.route.path === AppURLs.login || match.route.path === AppURLs.signup){
       addFormValidator();
       addFormButtonFunctions();
-    }else if (match.route.path === "/gamelist"){
+    }else if (match.route.path === AppURLs.gameList){
       initializeGameList();
-    }else if (match.route.path === "/pileofshame"){
+    }else if (match.route.path === AppURLs.pileofshame){
       initializePileOfShame();
-    }else if (match.route.path === "/"){
+    }else if (match.route.path === AppURLs.home){
       initializeHome();
     }
 
