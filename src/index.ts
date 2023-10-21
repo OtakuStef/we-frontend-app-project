@@ -1,5 +1,6 @@
 import "./style.scss";
 import routing from "./services/routing";
+import AppURLs from "./Models/AppURLs";
 
 window.addEventListener("popstate", routing.router);
 
@@ -8,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target instanceof Element){
       if (e.target.matches("[data-link]")){
         e.preventDefault();
-        routing.navigateTo(e.target.getAttribute("href"));
+        routing.navigateTo(AppURLs.baseUrl + e.target.getAttribute("href"));
       }
     }
   })

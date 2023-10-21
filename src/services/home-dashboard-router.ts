@@ -1,4 +1,5 @@
 import routing from "./routing";
+import AppURLs from "../Models/AppURLs";
 
 export default class HomeDashboardRouter{
   private readonly gameListCard;
@@ -18,13 +19,13 @@ export default class HomeDashboardRouter{
   public addCardEvents(){
 
     this.gameListCard?.addEventListener('click', e => {
-      setRouter(e,"/gamelist");
+      setRouter(e,AppURLs.gameList);
     })
     this.pileOfShameCard?.addEventListener('click',  e => {
-      setRouter(e,"/pileofshame");
+      setRouter(e,AppURLs.pileofshame);
     })
     this.userCard?.addEventListener('click',  e => {
-      setRouter(e,"user/login");
+      setRouter(e,AppURLs.login);
     })
   }
 

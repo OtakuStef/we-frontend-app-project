@@ -1,5 +1,6 @@
 import routing from "./routing";
 import Toaster from "./toaster";
+import AppURLs from "../Models/AppURLs";
 
 export default class LoginformHandler{
   private readonly signInButton;
@@ -35,20 +36,20 @@ function submitLogin() {
   if (isFormValid()){
     console.log("logged in")
     Toaster.toasterEvent("Logged in", 4000)
-    routing.navigateTo("/pileofshame");
+    routing.navigateTo(AppURLs.pileofshame);
   }
 }
 
 function submitSignUp(e : MouseEvent) {
   e.preventDefault();
-  routing.navigateTo("/user/signup");
+  routing.navigateTo(AppURLs.signup);
 }
 
 function generateUser(e : MouseEvent) {
   if (isFormValid()){
     e.preventDefault();
     Toaster.toasterEvent("User created", 4000)
-    routing.navigateTo("/user/login");
+    routing.navigateTo(AppURLs.login);
   }
 }
 

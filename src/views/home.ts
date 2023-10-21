@@ -1,4 +1,7 @@
 import abstractView from "./abstract-view";
+import gameListImageUrl from "./img/game-list-image.jpg";
+import pileOfShameImageUrl from "./img/pile-of-shame-image.jpg";
+import userAccountImageUrl from "./img/user-account-image.jpg";
 
 export default class extends abstractView {
   constructor() {
@@ -15,7 +18,7 @@ export default class extends abstractView {
         <div class="card-container row">
           <div id="gameListCard" class="btn col-md-4 px-0">
             <div class="card m-2">
-              <img src="../../game-list-image.jpg" alt="chessboard showing a pawn with a crown">
+              <img src=${gameListImageUrl} alt="chessboard showing a pawn with a crown">
               <div class="card-body">
                 <h5 class="card-title home-title">Game List</h5>
                 <hr class="hr" />
@@ -25,7 +28,7 @@ export default class extends abstractView {
           </div>
           <div id="pileOfShameCard" class="btn col-md-4 px-0">
             <div class="card m-2">
-              <img src="../../pile-of-shame-image.jpg" alt="pink and blue xbox controller">
+              <img src=${pileOfShameImageUrl} alt="pink and blue xbox controller">
               <div class="card-body">
                 <h5 class="card-title home-title">Pile Of Shame</h5>
                 <hr class="hr" />
@@ -35,7 +38,7 @@ export default class extends abstractView {
           </div>
           <div id="userCard" class="btn col-md-4 px-0">
             <div class="card m-2">
-              <img src="../../user-account-image.jpg" alt="colleagues working on a project with pen and paper">
+              <img src=${userAccountImageUrl} alt="colleagues working on a project with pen and paper">
               <div class="card-body">
                 <h5 class="card-title home-title">My User</h5>
                 <hr class="hr" />
