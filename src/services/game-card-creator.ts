@@ -12,7 +12,7 @@ export class GameCardCreator{
       gameDiv.appendChild(this.createGameCard(game))
     }
 
-    document.querySelector("#gameListDiv").replaceChildren(gameDiv);
+    document.querySelector("#gameListDiv")!.replaceChildren(gameDiv);
   }
 
   public static createGameCard = (gameItem : GameItem) => {
@@ -67,7 +67,7 @@ export class GameCardCreator{
     PileOfShameHandler.removeItem(gameItem);
   }
 
-  private static verifyString(input) : string{
+  private static verifyString(input : any) : string{
     if (input === null){
       return "missing :(";
     }else {
